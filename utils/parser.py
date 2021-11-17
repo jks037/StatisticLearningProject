@@ -13,6 +13,7 @@ def get_base_parser():
 
     parser.add_argument('--batch_size', default=64, type=int)
     parser.add_argument('--num_workers', default=8, type=int)
+    # parser.add_argument('--num_workers', default=0, type=int)
 
     parser.add_argument('--backbone', default='resnet50', type=str)
     parser.add_argument('--occupy', default=0, type=int)

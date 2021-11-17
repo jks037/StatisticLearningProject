@@ -106,31 +106,31 @@ class SourceTestSet(DataSet):
         return
 
 
-# class NoisySet(DataSet):
-#     def _get_web_name(self, category_name):
-#         return (category_name.split('.')[1] + '_bird').replace('_', '+')
-#
-#     def __init__(self, root_path, categories, transform=None, max_noisy_images_per=None):
-#         super(NoisySet, self).__init__(root_path, categories, transform)
-#
-#         self.image_list = []
-#         for category_name in categories:
-#
-#             web_name = self._get_web_name(category_name)
-#             dir_path = os.path.join(self.root_path, 'CUB_Google_200class', web_name)
-#             if not os.path.exists(dir_path):
-#                 print(category_name)
-#                 print(dir_path)
-#                 raise FileNotFoundError
-#
-#             image_names = sorted(os.listdir(dir_path))
-#             category_list = [(os.path.join(dir_path, image_name),
-#                               self.category2int[category_name]) for
-#                              image_name in image_names]
-#
-#             self.image_list += category_list[:max_noisy_images_per]
-#
-#         return
+class NoisySet(DataSet):
+    def _get_web_name(self, category_name):
+        return (category_name.split('.')[1] + '_bird').replace('_', '+')
+
+    def __init__(self, root_path, categories, transform=None, max_noisy_images_per=None):
+        super(NoisySet, self).__init__(root_path, categories, transform)
+
+        self.image_list = []
+        for category_name in categories:
+
+            web_name = self._get_web_name(category_name)
+            dir_path = os.path.join(self.root_path, 'CUB_Google_200class', web_name)
+            if not os.path.exists(dir_path):
+                print(category_name)
+                print(dir_path)
+                raise FileNotFoundError
+
+            image_names = sorted(os.listdir(dir_path))
+            category_list = [(os.path.join(dir_path, image_name),
+                              self.category2int[category_name]) for
+                             image_name in image_names]
+
+            self.image_list += category_list[:max_noisy_images_per]
+
+        return
 
 
 class WebSet(DataSet):
